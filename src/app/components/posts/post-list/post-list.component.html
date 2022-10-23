@@ -1,0 +1,13 @@
+<mat-accordion class="example-headers-align" multi *ngIf="posts.length; else noPosts">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ post.title }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <i>{{ post.content }}</i>
+  </mat-expansion-panel>
+</mat-accordion>
+<ng-template #noPosts>
+  <p class="no-posts">no posts yet!</p>  
+</ng-template>
