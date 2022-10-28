@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-form-field appearance="fill">
+    <textarea matInput rows="2" [(ngModel)]="enteredTitle"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="addPost()">Save</button>
+</mat-card>
