@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreatePostComponent } from './components/posts/create-post/create-post.component';
-import { PostsComponent } from './components/posts/posts.component';
+import { PostCreateComponent } from './components/posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -13,12 +12,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HeaderComponent } from './components/header/header.component';
 import { PostListComponent } from './components/posts/post-list/post-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
-    CreatePostComponent,
+    PostCreateComponent,
     HeaderComponent,
     PostListComponent,
   ],
@@ -31,6 +30,7 @@ import { PostListComponent } from './components/posts/post-list/post-list.compon
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
