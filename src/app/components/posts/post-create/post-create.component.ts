@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { PostsService } from "src/app/store/app/posts.service";
 import { IPost } from "src/app/store/app/types";
 
 @Component({
@@ -8,7 +9,7 @@ import { IPost } from "src/app/store/app/types";
   styleUrls: ['./post-create.component.scss'],
 })
 export class PostCreateComponent {
-  @Output() postCreated = new EventEmitter<IPost>();
+  constructor(public postsService: PostsService) {}
 
   public newPostForm = new FormGroup({
     title: new FormControl(null),
@@ -20,11 +21,7 @@ export class PostCreateComponent {
 
   public addPost() {
     if (this.newPostForm.valid && this.newPostForm.value.content && this.newPostForm.value.title) {
-      const post: IPost = {
-        title: this.newPostForm.value.title as string,
-        content: this.newPostForm.value.content as string
-      };
-      this.postCreated.emit(post);
+      this.postsService.addPosts(this.newPostForm.value.title as string, this.newPostForm.value.content as string)
     }
   }
 }
