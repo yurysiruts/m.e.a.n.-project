@@ -1,9 +1,24 @@
 <mat-card>
-  <mat-form-field appearance="fill">
-    <textarea matInput rows="2" [(ngModel)]="enteredTitle"></textarea>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
-  </mat-form-field>
-  <button mat-stroked-button color="primary" (click)="addPost()">Save</button>
+  <form [formGroup]="newPostForm" (ngSubmit)="addPost()">
+    <mat-form-field appearance="fill">
+      <input 
+        matInput 
+        rows="2" 
+        required 
+        minlength="3" 
+        formControlName="title"
+        #title
+      >
+      <mat-error *ngIf="newPostForm.controls['title'].invalid">
+        Please enter the post title
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <textarea matInput rows="6" required formControlName="content"></textarea>
+      <mat-error *ngIf="newPostForm.controls['content'].invalid">
+        Please enter the post content
+      </mat-error>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" type="submit">Save</button>
+  </form>
 </mat-card>
