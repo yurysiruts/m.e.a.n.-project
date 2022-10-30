@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IPost } from './store/app/types';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,4 @@ import { IPost } from './store/app/types';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mean-project';
-  storedPosts: IPost[] = [];
-
-  onPostCreate(post: IPost) {
-    this.storedPosts.push(post);
-  }
 }
