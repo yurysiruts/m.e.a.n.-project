@@ -6,6 +6,10 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <i>{{ post.content }}</i>
+    <mat-action-row>
+      <button mat-stroked-button color="primary">EDIT</button>
+      <button mat-stroked-button color="warn">DELETE</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 <ng-template #noPosts>

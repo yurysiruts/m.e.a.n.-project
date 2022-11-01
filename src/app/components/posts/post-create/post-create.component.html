@@ -1,11 +1,9 @@
 <mat-card>
-  <form [formGroup]="newPostForm" (ngSubmit)="addPost()">
+  <form [formGroup]="newPostForm" #formDirective="ngForm"  (ngSubmit)="addPost(formDirective)">
     <mat-form-field appearance="fill">
+      <mat-label>Post Title</mat-label>
       <input 
         matInput 
-        rows="2" 
-        required 
-        minlength="3" 
         formControlName="title"
         #title
       >
@@ -14,7 +12,12 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <textarea matInput rows="6" required formControlName="content"></textarea>
+      <mat-label>Post Content</mat-label>
+      <textarea 
+        matInput 
+        rows="6" 
+        formControlName="content"
+      ></textarea>
       <mat-error *ngIf="newPostForm.controls['content'].invalid">
         Please enter the post content
       </mat-error>
