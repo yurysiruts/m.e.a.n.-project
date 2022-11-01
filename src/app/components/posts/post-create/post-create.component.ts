@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroupDirective, Validators } from "@angular/forms";
 import { PostsService } from "src/app/store/app/posts.service";
 import { IPost } from "src/app/store/app/types";
 
@@ -9,19 +9,18 @@ import { IPost } from "src/app/store/app/types";
   styleUrls: ['./post-create.component.scss'],
 })
 export class PostCreateComponent {
-  constructor(public postsService: PostsService) {}
+  constructor(public postsService: PostsService, private fb: FormBuilder) {}
 
-  public newPostForm = new FormGroup({
-    title: new FormControl(null),
-    content: new FormControl(null),
+  public newPostForm = this.fb.group({
+    title: [null, Validators.required],
+    content: [null, Validators.required],
   });
 
-  public enteredTitle = '';
-  public enteredContent = '';
-
-  public addPost() {
+  public addPost(formDirective: FormGroupDirective) {
     if (this.newPostForm.valid && this.newPostForm.value.content && this.newPostForm.value.title) {
-      this.postsService.addPosts(this.newPostForm.value.title as string, this.newPostForm.value.content as string)
+      this.postsService.addPosts(this.newPostForm.value.title, this.newPostForm.value.content as string)
+      this.newPostForm.reset();
+      formDirective.resetForm();
     }
   }
 }
