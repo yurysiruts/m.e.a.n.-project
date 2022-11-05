@@ -1,6 +1,10 @@
 const express = require('express');
+const bodyParses = require('body-parser');
 
 const app = express();
+
+app.use(bodyParses.json());
+app.use(bodyParses.urlencoded({ extended: false }));
 
 // CORS error(different hosts for front and back server) overcomed by adding this headers
 app.use((req, res, next) => {
@@ -10,8 +14,16 @@ app.use((req, res, next) => {
   next();
 })
 
+app.post('/api/posts', (req, res, next) => {
+  const newPost = req.body;
+  console.log('newPost: ', newPost)
+  res.status(201).json({
+    message: 'Post added successfully!'
+  });
+})
+
 // middleware express function
-app.use('/api/posts', (req, res, next) => {
+app.get('/api/posts', (req, res, next) => {
   const posts = [
     { id: '4asfo121e', title: '1st Title', content: 'This is coming from the server' },
     { id: 'sdf13eesa', title: '2nd Title', content: 'This is coming from the server' },
